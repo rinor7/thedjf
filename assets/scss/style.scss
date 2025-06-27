@@ -1,0 +1,21 @@
+@import "other/mixins";
+@import "other/variables";
+@import "other/fonts";
+@import "other/general";
+
+@import "layouts/error404";
+@import "layouts/application";
+@import "layouts/privacy";
+
+@import "headers/global-header-style";
+@import "headers/minimalmenu";
+
+@import "footers/default"; 
+
+@import "blocks/block-banner-one";
+@import "blocks/block-four-boxes-counter"; 
+@import "blocks/four-boxes";  
+@import "blocks/block-image-text";
+@import "blocks/block-text-image";
+@import "blocks/block-simple-section";
+

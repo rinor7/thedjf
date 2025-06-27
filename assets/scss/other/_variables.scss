@@ -1,0 +1,90 @@
+/* Variables START*/
+
+$white: #fff;
+$white-light: #f9f9f9;
+$black: #000000;
+$red: red;
+$primary-color: #44D2E8;
+$primary-color-light: #44D2E857;
+$secondary-color: #000;
+$secondary-color-light: #000000a4;
+$grey-color: #dbd5d545;
+
+@mixin background-gradient {
+    // background: linear-gradient(to right, #cf4918 0, $primary-color 51%, #cf4918 100%);
+    background: linear-gradient(135deg, #44D2E8, #26B3C6, #20AABF);
+}
+
+@mixin transition {
+    transition: all .3s ease-in-out;
+    -webkit-transition: .3s ease-in-out;
+    -moz-transition: .3s ease-in-out;
+    -ms-transition: .3s ease-in-out;
+    -o-transition: .3s ease-in-out;
+}
+
+// @mixin button {
+//     width: 185px;
+//     height: 45px;
+//     border: 1px solid;
+//     border-color: transparent;
+//     color: $white;
+//     text-align: center;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     will-change: box-shadow, transform;
+//     background-color: $primary-color;
+//     background-image: linear-gradient(to right, #cf4918 0, $primary-color 51%, #cf4918 100%);
+//     border-radius: 4px;
+//     box-shadow: 0 2px 2px 0 rgba(207, 73, 24, .14), 0 3px 1px -2px rgba(207, 73, 24, .2), 0 1px 5px 0 rgba(207, 73, 24, .12); /* Updated to orange color */
+//     background-size: 200% auto !important;
+//     white-space: nowrap;
+//     transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), background-position .5s;
+
+//     &:hover {
+//         box-shadow: 0 14px 26px -12px #cf4918, 0 4px 23px 0 rgba(0, 0, 0, .32), 0 8px 10px -5px #cf4918;
+//         background-position: right center;
+//         background-color: #cf4918;
+//         border-color: transparent;
+//     }
+// }
+@mixin button {
+    width: 185px;
+    height: 45px;
+    border: 1px solid;
+    border-color: transparent;
+    color: $white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    will-change: box-shadow, transform;
+    background-color: $primary-color;
+    background-image: linear-gradient(
+      to right,
+      #26B3C6 0%,
+      $primary-color 51%,
+      #20AABF 100%
+    );
+    border-radius: 4px;
+    box-shadow: 0 2px 2px 0 rgba(38, 179, 198, 0.14),
+                0 3px 1px -2px rgba(38, 179, 198, 0.2),
+                0 1px 5px 0 rgba(38, 179, 198, 0.12);
+    background-size: 200% auto !important;
+    white-space: nowrap;
+    transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1),
+                background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+                background-position 0.5s;
+  
+    &:hover {
+      box-shadow: 0 14px 26px -12px rgba(38, 179, 198, 1),
+                  0 4px 23px 0 rgba(0, 0, 0, 0.32),
+                  0 8px 10px -5px rgba(32, 170, 191, 1);
+      background-position: right center;
+      background-color: #20AABF;
+      border-color: transparent;
+    }
+  }
+  
+/* Variables END*/

@@ -1,0 +1,10 @@
+/*Privacy Page Start*/
+.page-template-privacy {
+    .site-privacy {
+        margin: 120px 0 40px 0;
+        @include md {
+            margin-top: 110px;
+        }
+    }
+}
+/*Privacy Page END*/

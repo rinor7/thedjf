@@ -1,0 +1,173 @@
+.banner-one__section {
+    display: flex;
+    align-items: center;
+    position: relative;
+    &.banner-type--background {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 712px;
+        background-attachment: fixed;
+        @media(min-width: 450px) {
+            min-height: 712px;
+        }
+        @media(min-width: 991.98px) {
+            height: 100vh;
+        }
+        .banner-content.container{
+            position: relative;
+            top: unset;
+            left: unset;
+            transform: unset;
+        }
+        &::before {
+            background-color: #00000076;
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+    }
+    &.banner-type--slider, &.banner-type--video, &.banner-type--background {
+        .banner-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            color: $white;
+            .row {
+                @include md {
+                    row-gap: 60px;
+                }
+                .leftside {
+                    align-self: center;
+                    @include min-lg {
+                        padding-right: 100px;
+                    }
+                    .banner-h1 {
+                        margin-bottom: 24px;
+                        font-size: 40px;
+                        @include min-sm {
+                            font-size: 50px;
+                        }
+                        @include min-md {
+                            font-size: 60px;
+                        }
+                    }
+                    .banner-paragraph {
+                        margin-bottom: 12px;
+                        font-size: 18px;
+                        @include min-sm {
+                            font-size: 19px;
+                        }
+                        @include min-md {
+                            font-size: 20px;
+                        }
+                    }
+                    ul {
+                        li {
+                            margin-bottom: 12px;
+                            display: flex;
+                            column-gap: 6px;
+                            row-gap: 12px;
+                            align-items: center;
+                            i, a {
+                                color: $primary-color;
+                                text-decoration: none;
+                                display: inline-block;
+                                position: relative;
+                                &:hover {
+                                    background: linear-gradient(90deg, $primary-color, #26B3C6, #20AABF);
+                                    -webkit-background-clip: text;
+                                    background-clip: text;
+                                    color: transparent;
+                                  }                                  
+                            }
+                            a {
+                                font-size: 18px;
+                                @include min-sm {
+                                    font-size: 19px;
+                                }
+                                @include min-md {
+                                    font-size: 20px;
+                                }
+                            }
+                        }
+                    }
+                }
+                .rightside {
+                    align-self: center;
+                    justify-content: center;
+                    display: flex;
+                    @include md {
+                        justify-content: left
+                    }
+                    p {
+                        a {
+                            @include button;
+                            height: 60px;
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &.banner-type--slider {
+        .banner-media {
+            height: 712px;
+            @media(min-width: 450px) {
+                height: 712px;
+            }
+            @media(min-width: 991.98px) {
+                // height: 712px;
+                height: 100vh;
+            }
+            .swiper-wrapper {
+                height: 100%;
+                .swiper-slide {
+                    height: 100%;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+            }
+            &::before {
+                position: absolute;
+                z-index: 2;
+                content: "";
+                width: 100%;
+                height: 100%;
+                background-color: #000000a3;
+            }
+        }
+    }
+    &.banner-type--video {
+        .banner-media {
+            height: 712px;
+            width: 100%;
+            @media(min-width: 450px) {
+                height: 712px;
+            }
+            @media(min-width: 991.98px) {
+                height: 712px;
+            }
+            video {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+            &::before {
+                position: absolute;
+                z-index: 1;
+                content: "";
+                width: 100%;
+                height: 100%;
+                background-color: #00000052;
+            }
+        }
+    }
+}

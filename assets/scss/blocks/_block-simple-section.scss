@@ -1,0 +1,24 @@
+/* Block simple section END */
+
+.simple-bg-section {
+    height: 400px;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @include md {
+        background-position: bottom;
+        height: 350px;
+    }
+    .content-wrapper {
+        p {
+            a {
+                @include button;
+                height: 60px;
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+/* Block simple section END */

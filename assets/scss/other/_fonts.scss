@@ -1,0 +1,91 @@
+/* Fonts START*/
+@font-face {
+    font-family: "base-theme";
+    font-display: swap;
+    font-style: normal;
+    font-weight: 100; /* Thin */
+    src: url(../fonts/Montserrat-Thin.ttf) format('truetype'),
+         url(../fonts/Montserrat-Thin.woff2) format('woff2'),
+         url(../fonts/Montserrat-Thin.woff) format('woff');
+}
+
+@font-face {
+    font-family: "base-theme";
+    font-display: swap;
+    font-style: normal;
+    font-weight: 200; /* Extra Light */
+    src: url(../fonts/Montserrat-ExtraLight.ttf) format('truetype'),
+         url(../fonts/Montserrat-ExtraLight.woff2) format('woff2'),
+         url(../fonts/Montserrat-ExtraLight.woff) format('woff');
+}
+
+@font-face {
+    font-family: "base-theme";
+    font-display: swap;
+    font-style: normal;
+    font-weight: 300; /* Light */
+    src: url(../fonts/Montserrat-Light.ttf) format('truetype'),
+         url(../fonts/Montserrat-Light.woff2) format('woff2'),
+         url(../fonts/Montserrat-Light.woff) format('woff');
+}
+
+@font-face {
+    font-family: "base-theme";
+    font-display: swap;
+    font-style: normal;
+    font-weight: 400; /* Regular */
+    src: url(../fonts/Montserrat-Regular.ttf) format('truetype'),
+         url(../fonts/Montserrat-Regular.woff2) format('woff2'),
+         url(../fonts/Montserrat-Regular.woff) format('woff');
+}
+
+@font-face {
+    font-family: "base-theme";
+    font-display: swap;
+    font-style: normal;
+    font-weight: 500; /* Medium */
+    src: url(../fonts/Montserrat-Medium.ttf) format('truetype'),
+         url(../fonts/Montserrat-Medium.woff2) format('woff2'),
+         url(../fonts/Montserrat-Medium.woff) format('woff');
+}
+
+@font-face {
+    font-family: "base-theme";
+    font-display: swap;
+    font-style: normal;
+    font-weight: 600; /* Semi-Bold */
+    src: url(../fonts/Montserrat-SemiBold.ttf) format('truetype'),
+         url(../fonts/Montserrat-SemiBold.woff2) format('woff2'),
+         url(../fonts/Montserrat-SemiBold.woff) format('woff');
+}
+
+@font-face {
+    font-family: "base-theme";
+    font-display: swap;
+    font-style: normal;
+    font-weight: 700; /* Bold */
+    src: url(../fonts/Montserrat-Bold.ttf) format('truetype'),
+         url(../fonts/Montserrat-Bold.woff2) format('woff2'),
+         url(../fonts/Montserrat-Bold.woff) format('woff');
+}
+
+@font-face {
+    font-family: "base-theme";
+    font-display: swap;
+    font-style: normal;
+    font-weight: 800; /* Extra Bold */
+    src: url(../fonts/Montserrat-ExtraBold.ttf) format('truetype'),
+         url(../fonts/Montserrat-ExtraBold.woff2) format('woff2'),
+         url(../fonts/Montserrat-ExtraBold.woff) format('woff');
+}
+
+@font-face {
+    font-family: "base-theme";
+    font-display: swap;
+    font-style: normal;
+    font-weight: 900; /* Black */
+    src: url(../fonts/Montserrat-Black.ttf) format('truetype'),
+         url(../fonts/Montserrat-Black.woff2) format('woff2'),
+         url(../fonts/Montserrat-Black.woff) format('woff');
+}
+/* Fonts END*/
