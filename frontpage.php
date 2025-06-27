@@ -18,6 +18,9 @@ include("includes/headers/{$header_type}.php");
 
 <?php get_template_part('includes/blocks/block-image-text', null, array()); ?>
 
+<?php get_template_part('includes/blocks/block-accordions', null, array()); ?>
+
+<?php get_template_part('includes/blocks/block-contact', null, array()); ?>
 
 </main>
 

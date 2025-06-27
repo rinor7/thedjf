@@ -1,0 +1,11 @@
+.section__form {
+    padding: 80px 0;
+    overflow: hidden;
+    @include md {
+        padding: 60px 0;
+    }
+    form {
+        margin-top: 36px;
+        padding: 0;
+    }
+}

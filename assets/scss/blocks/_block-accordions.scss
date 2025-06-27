@@ -1,0 +1,33 @@
+.section__accordions {
+    padding: 80px 0;
+    @include background-gradient;
+    @include md {
+        padding: 60px 0;
+    }
+    .section-header {
+        color: $white;
+    }
+    .accordion {
+        max-width: 800px;
+        margin: auto;
+        margin-top: 36px;
+        .accordion-item {
+            .accordion-header {
+                .accordion-button  {
+                    outline: unset;
+                    box-shadow: unset;
+                    background-color: $white;
+                    color: $black;
+                    &::after {
+                        background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="%2344D2E8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5L8 11L14 5"/></svg>');
+                    }
+                }
+            }
+            .accordion-body {
+                p {
+                    color: #00000075;
+                }
+            }
+        }
+    }
+}
