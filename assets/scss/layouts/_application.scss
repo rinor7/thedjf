@@ -11,69 +11,26 @@
         }
     }
     form {
-        .signature-row {
-            .col-lg-12 {
-                display: flex;
-                flex-direction: column;
-                margin: auto;
-                justify-content: center;
-                text-align: center;
-                p {
-                    label {
-                        margin-bottom: 0;
-                    }
-                }
-                .dscf7_signature {
-                    .dscf7_signature_inner {
-                        border: 2px solid $primary-color;
-                        border-radius: 6px;
-                        @include sm {
-                            width: 100%;
-                        }
-                        canvas {
-                            height: 100px;
-                            width: 400px;
-                            border-radius: 6px;
-                            @include sm {
-                                width: 100%;
-                            }
-                        }
-                    }
-                }
-            }
-        }
         .acceptance {
             margin-top: 6px;
         }
         .acceptance-privacy {
             margin-top: 24px;
         }
-        .acceptance, .acceptance-privacy {
-            .wpcf7-form-control-wrap {
-                .wpcf7-list-item {
-                    margin: 0;
-                    input {
-                        margin-right: 5px;
-                        height: 16px;
-                        width: 16px;
-                        position: relative;
-                        top: 4px;
-                    }
-                    .wpcf7-list-item-label {
-                        font-size: 14px;
-                        a {
-                            text-decoration: underline;
-                            &:hover {
-                                color: $primary-color;
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
 }
 
+.home {
+    form {
+        .acceptance {
+            margin-top: 6px;
+        }
+        .acceptance-privacy {
+            margin-top: 6px;
+            margin-bottom: 0;
+        }
+    }
+}
 form {
     background-color: $white;
     border-radius: 12px;
@@ -179,6 +136,60 @@ form {
         font-weight: 600;
         // width: fit-content;
         text-align: center;
+    }
+    .signature-row {
+        .col-lg-12 {
+            display: flex;
+            flex-direction: column;
+            margin: auto;
+            justify-content: center;
+            text-align: center;
+            p {
+                label {
+                    margin-bottom: 0;
+                }
+            }
+            .dscf7_signature {
+                .dscf7_signature_inner {
+                    border: 2px solid $primary-color;
+                    border-radius: 6px;
+                    @include sm {
+                        width: 100%;
+                    }
+                    canvas {
+                        height: 100px;
+                        width: 400px;
+                        border-radius: 6px;
+                        @include sm {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .acceptance, .acceptance-privacy {
+        .wpcf7-form-control-wrap {
+            .wpcf7-list-item {
+                margin: 0;
+                input {
+                    margin-right: 5px;
+                    height: 16px;
+                    width: 16px;
+                    position: relative;
+                    top: 4px;
+                }
+                .wpcf7-list-item-label {
+                    font-size: 14px;
+                    a {
+                        text-decoration: underline;
+                        &:hover {
+                            color: $primary-color;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 .wpcf7 form.invalid .wpcf7-response-output, .wpcf7 form.unaccepted .wpcf7-response-output, .wpcf7 form.payment-required .wpcf7-response-output {
