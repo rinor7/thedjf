@@ -1,5 +1,6 @@
 /*Application Page Start*/
 .page-template-application {
+    overflow: hidden;
     .site-application {
         margin: 120px 0 40px 0;
         @include md {
@@ -92,6 +93,12 @@ form {
                     row-gap: 12px;
                 }
             } 
+            label {
+                display: flex;
+                flex-wrap: wrap;
+                column-gap: 5px;
+                row-gap: 2px;
+            }
         }
     }
     .wpcf7-response-output {
