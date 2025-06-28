@@ -117,6 +117,10 @@
             color: $white;
             font-weight: 700;
             letter-spacing: 2px;
+            @include sm {
+                font-size: 30px;
+                line-height: 30px;
+            }
         }
     }
     li:last-child {
