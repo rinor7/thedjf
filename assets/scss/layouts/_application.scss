@@ -156,6 +156,9 @@ form {
                 }
             }
             .dscf7_signature {
+                width: fit-content;
+                position: relative;
+                margin: auto;
                 .dscf7_signature_inner {
                     border: 2px solid $primary-color;
                     border-radius: 6px;
@@ -170,6 +173,15 @@ form {
                             width: 100%;
                         }
                     }
+                    &.wpcf7-not-valid {
+                        border-color: $red;
+                    }
+                }
+                .wpcf7-form-control-wrap {
+                    width: 100%;
+                    height: 100%;
+                    position: absolute;
+                    left: 0;
                 }
             }
         }

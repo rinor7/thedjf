@@ -212,3 +212,27 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   }
 });
+
+//When signature exist on form and not valid add border
+document.addEventListener('DOMContentLoaded', function () {
+  // Observe all .wpcf7-form-control elements
+  document.querySelectorAll('.wpcf7-form-control').forEach(function (el) {
+    const observer = new MutationObserver(function (mutations) {
+      mutations.forEach(function (mutation) {
+        if (mutation.attributeName === 'class') {
+          if (el.classList.contains('wpcf7-not-valid')) {
+            const container = el.closest('.dscf7_signature');
+            if (container) {
+              const inner = container.querySelector('.dscf7_signature_inner');
+              if (inner) {
+                inner.classList.add('wpcf7-not-valid');
+              }
+            }
+          }
+        }
+      });
+    });
+
+    observer.observe(el, { attributes: true });
+  });
+});
