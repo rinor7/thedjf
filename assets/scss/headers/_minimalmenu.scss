@@ -89,6 +89,7 @@ body:not(.home) {
             line-height: 22px;
             letter-spacing: 1px;
             position: relative;
+            white-space: nowrap;
             &:after {
                 position: absolute;
                 content: "";
