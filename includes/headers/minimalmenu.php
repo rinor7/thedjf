@@ -43,7 +43,7 @@
     <link rel="apple-touch-icon" href="<?php echo get_template_directory_uri(); ?>/assets/img/apple-touch-icon.png">
 
     <!-- Preloading font for performance improvement -->
-    <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/assets/fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+    <!-- <link rel="preload" href="<?php echo get_template_directory_uri(); ?>/assets/fonts/Montserrat-Regular.woff2" as="font" type="font/woff2" crossorigin="anonymous"> -->
 
     <!-- Optional: Helps the browser connect to fonts.googleapis.com earlier for performance improvement -->
         <!-- <link rel="dns-prefetch" href="//fonts.googleapis.com"> -->
