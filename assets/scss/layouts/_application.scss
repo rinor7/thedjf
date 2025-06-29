@@ -197,8 +197,8 @@ form {
                         width: 100%;
                     }
                     canvas {
-                        // height: 100px;
-                        // width: 400px;
+                        height: 100px;
+                        width: 400px;
                         border-radius: 6px;
                         @include md {
                             width: 100%;
