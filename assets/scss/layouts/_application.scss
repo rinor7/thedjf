@@ -81,6 +81,9 @@ form {
     .row {
         margin-bottom: 18px;
         &.file-upload-field {
+            label {
+                display: block;
+            }
             .files {
                 width: 100%;
                 // height: 45px;

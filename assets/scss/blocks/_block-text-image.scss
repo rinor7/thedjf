@@ -53,18 +53,21 @@
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+            width: 95%;
+            height: 95%;
+            // clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
             background: $primary-color;
-            transform: translate(10px, 10px); 
+            transform: translate(25px,30px); 
             z-index: 0;
             @include transition;
         }
         .img {
             width: 100%;
             height: 300px;
-            clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+            // clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+                border-radius: 8px;
+                overflow: hidden;
+                z-index: -1;
             @include min-md {
                 height: 400px;
             }
