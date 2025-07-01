@@ -17,6 +17,7 @@
             // clip-path: polygon(0 0, 75% 0, 100% 100%, 25% 100%);
                 border-radius: 8px;
                 overflow: hidden;
+                    box-shadow: 0 10px 20px 3px #00000061;
             @include min-md {
                 height: 400px;
             }
