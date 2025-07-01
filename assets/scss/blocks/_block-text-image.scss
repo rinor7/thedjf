@@ -78,12 +78,12 @@
                 object-fit: cover;
             }
         }
-        &:hover {
-            .background-frame {
-                transform: scale(0.5);
-                @include transition;
-            }
-        }
+        // &:hover {
+        //     .background-frame {
+        //         transform: scale(0.5);
+        //         @include transition;
+        //     }
+        // }
     }
 }
 
