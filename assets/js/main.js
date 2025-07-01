@@ -1,31 +1,31 @@
 //Hamburger Menu
-var Menu = {
-    el: {
-    ham: jQuery('.menu-m'),
-    menuTop: jQuery('.menu-top'),
-    menuMiddle: jQuery('.menu-middle'),
-    menuBottom: jQuery('.menu-bottom')
-    },
-    init: function() {
-    Menu.bindUIactions();
-    },
-    bindUIactions: function() {
-    Menu.el.ham
-    .on(
-    'click',
-    function(event) {
-    Menu.activateMenu(event);
-    event.preventDefault();
-    }
-    );
-    },
-    activateMenu: function() {
-    Menu.el.menuTop.toggleClass('menu-top-click');
-    Menu.el.menuMiddle.toggleClass('menu-middle-click');
-    Menu.el.menuBottom.toggleClass('menu-bottom-click'); 
-    }
-    };
-Menu.init();
+// var Menu = {
+//     el: {
+//     ham: jQuery('.menu-m'),
+//     menuTop: jQuery('.menu-top'),
+//     menuMiddle: jQuery('.menu-middle'),
+//     menuBottom: jQuery('.menu-bottom')
+//     },
+//     init: function() {
+//     Menu.bindUIactions();
+//     },
+//     bindUIactions: function() {
+//     Menu.el.ham
+//     .on(
+//     'click',
+//     function(event) {
+//     Menu.activateMenu(event);
+//     event.preventDefault();
+//     }
+//     );
+//     },
+//     activateMenu: function() {
+//     Menu.el.menuTop.toggleClass('menu-top-click');
+//     Menu.el.menuMiddle.toggleClass('menu-middle-click');
+//     Menu.el.menuBottom.toggleClass('menu-bottom-click'); 
+//     }
+//     };
+// Menu.init();
 
 // Header change on scroll
 $(document).ready(function() {
@@ -124,34 +124,34 @@ $(document).ready(function() {
 
 
 // Close navbar when click on link ( used for Landingpages )
-function closeNavbar() {
-  $(".navbar-toggler").attr("aria-expanded", "false");
-  $(".navbar-collapse").removeClass("show");
-  $(".menu-top").removeClass("menu-top-click");
-  $(".menu-middle").removeClass("menu-middle-click");
-  $(".menu-bottom").removeClass("menu-bottom-click");
-  $("body").removeClass("no-scroll");
-  $(".site").removeClass("filter-style");
-  $(".menu-menu-1-container").removeClass("act");
-  toggleScroll();
-}
-$(".navbar-collapse li a").on("click", function() {
-  closeNavbar();
-});
+// function closeNavbar() {
+//   $(".navbar-toggler").attr("aria-expanded", "false");
+//   $(".navbar-collapse").removeClass("show");
+//   $(".menu-top").removeClass("menu-top-click");
+//   $(".menu-middle").removeClass("menu-middle-click");
+//   $(".menu-bottom").removeClass("menu-bottom-click");
+//   $("body").removeClass("no-scroll");
+//   $(".site").removeClass("filter-style");
+//   $(".menu-menu-1-container").removeClass("act");
+//   toggleScroll();
+// }
+// $(".navbar-collapse li a").on("click", function() {
+//   closeNavbar();
+// });
 
 
 //For all navigation, add menu-open class on body
-document.addEventListener('DOMContentLoaded', function () {
-  var navbar = document.getElementById('navbarNav');
+// document.addEventListener('DOMContentLoaded', function () {
+//   var navbar = document.getElementById('navbarNav');
 
-  navbar.addEventListener('show.bs.collapse', function () {
-    document.body.classList.add('menu-open');
-  });
+//   navbar.addEventListener('show.bs.collapse', function () {
+//     document.body.classList.add('menu-open');
+//   });
 
-  navbar.addEventListener('hide.bs.collapse', function () {
-    document.body.classList.remove('menu-open');
-  });
-});
+//   navbar.addEventListener('hide.bs.collapse', function () {
+//     document.body.classList.remove('menu-open');
+//   });
+// });
 
 
 // var swiper = new Swiper(".mySwiper", {
@@ -236,3 +236,29 @@ document.addEventListener('DOMContentLoaded', function () {
     observer.observe(el, { attributes: true });
   });
 });
+
+
+
+const ssnInput = document.getElementById("ssn");
+  ssnInput.addEventListener("input", function () {
+    let value = ssnInput.value.replace(/\D/g, ""); // Remove non-digits
+    value = value.slice(0, 9); // Limit to 9 digits
+    if (value.length > 5) {
+      value = value.slice(0, 3) + '-' + value.slice(3, 5) + '-' + value.slice(5);
+    } else if (value.length > 3) {
+      value = value.slice(0, 3) + '-' + value.slice(3);
+    }
+    ssnInput.value = value;
+  });
+
+const input = document.getElementById("federal-tax-id");
+  input.addEventListener("input", function (e) {
+    let value = input.value.replace(/\D/g, "");
+    value = value.slice(0, 9);
+    if (value.length > 2) {
+      value = value.slice(0, 2) + '-' + value.slice(2);
+    }
+    input.value = value;
+  });
+
+  
