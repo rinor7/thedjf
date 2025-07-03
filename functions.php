@@ -28,3 +28,5 @@ require get_template_directory() . '/theme-options/container-admin-customize.php
 require get_template_directory() . '/theme-options/general-functions.php';
 require get_template_directory() . '/theme-options/taxonomies.php';
 require get_template_directory() . '/theme-options/global-headers.php';
+
+require_once get_template_directory() . '/cf7-pdf/generate-pdf.php';
