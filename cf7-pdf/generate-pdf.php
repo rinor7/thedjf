@@ -1,92 +1,77 @@
 <?php
+add_action('wpcf7_before_send_mail', 'cf7_generate_pdf_and_send_separately', 10, 2);
 
-add_action('wpcf7_before_send_mail', 'cf7_generate_pdf_inside_theme', 10, 2);
-
-function cf7_generate_pdf_inside_theme($cf7, &$abort) {
+function cf7_generate_pdf_and_send_separately($cf7, &$abort) {
     $submission = WPCF7_Submission::get_instance();
     if (!$submission) return;
 
-    // Only run for form titled "Application Form"
     if ($cf7->title() !== 'Application Form') return;
 
     $data = $submission->get_posted_data();
     $upload_dir = wp_upload_dir();
-    $pdf_path = $upload_dir['basedir'] . '/application-' . time() . '.pdf';
+    $wpcf7_upload_dir = trailingslashit($upload_dir['basedir']) . 'wpcf7_uploads';
 
-    // Load TCPDF (adjust path if needed)
+    if (!file_exists($wpcf7_upload_dir)) {
+        wp_mkdir_p($wpcf7_upload_dir);
+    }
+
+    $pdf_path = $wpcf7_upload_dir . '/application-' . time() . '.pdf';
+
     require_once get_template_directory() . '/cf7-pdf/tcpdf/tcpdf.php';
 
     $pdf = new TCPDF();
-    $pdf->SetTitle('Business Application Form');
-    $pdf->SetAuthor('Your Company Name');
-
+    $pdf->SetTitle('DIRECT JUNCTION FINANCIAL Application Form');
     $pdf->AddPage();
+    $pdf->SetFont('helvetica', 'B', 14);
+    $pdf->Write(0, "DIRECT JUNCTION FINANCIAL Application Form\n\n");
 
-    // Add logo if you want - adjust path or comment out if no logo
-    // $logo_path = get_template_directory() . '/images/logo.png';
-    // if (file_exists($logo_path)) {
-    //     $pdf->Image($logo_path, 15, 10, 50);
-    //     $pdf->Ln(20);
-    // }
+    $pdf->SetFont('helvetica', '', 10);
 
-    $pdf->SetFont('helvetica', 'B', 16);
-    $pdf->SetTextColor(0, 51, 102);
-    $pdf->Write(0, "Business Application Form\n\n");
-
-    $pdf->SetFont('helvetica', '', 11);
-    $pdf->SetTextColor(0, 0, 0);
-
-    // Build HTML table of form data
     $html = '<table border="1" cellpadding="5" cellspacing="0" style="border-collapse:collapse;">';
+
+    // Inputs to skip
+    $skip_inputs = [
+        'signature-464-inline',
+        'signature-464-attachment',
+        'bank-statements',
+        'acceptance-002',
+        'acceptance-001'
+    ];
+
     foreach ($data as $key => $value) {
-    if ($key === 'signature-464') {
-        if (is_array($value)) {
-            // Find and keep only URL (starting with http or https)
-            $url = '';
-            foreach ($value as $v) {
-                if (strpos($v, 'http') === 0) {
-                    $url = $v;
-                    break;
+        if (in_array($key, $skip_inputs, true)) continue;
+
+        if ($key === 'signature-464') {
+            if (is_array($value)) {
+                foreach ($value as $v) {
+                    if (strpos($v, 'http') === 0) {
+                        $value = $v;
+                        break;
+                    }
                 }
+            } elseif (strpos($value, 'http') !== 0) {
+                $value = '';
             }
-            $value = $url ?: 'SIGNED'; // fallback to SIGNED if URL missing
-        } else if (is_string($value)) {
-            // If it’s a string, check if it starts with http; if not, remove it
-            if (strpos($value, 'http') !== 0) {
-                $value = 'SIGNED'; // or empty string if you want no output
-            }
+        } elseif (is_array($value)) {
+            $value = implode(", ", $value);
         }
-    } else if (is_array($value)) {
-        $value = implode(", ", $value);
+
+        $html .= '<tr><td><strong>' . ucfirst(str_replace('-', ' ', $key)) . '</strong></td><td>' . htmlspecialchars($value) . '</td></tr>';
     }
-
-    $html .= '<tr>
-        <td style="background-color:#f2f2f2; width:40%;"><strong>' . ucfirst(str_replace('-', ' ', $key)) . '</strong></td>
-        <td>' . htmlspecialchars($value) . '</td>
-    </tr>';
-}
-
 
     $html .= '</table>';
 
     $pdf->writeHTML($html, true, false, true, false, '');
-
     $pdf->Output($pdf_path, 'F');
 
-    // Attach PDF to mail
-    $mail = $cf7->prop('mail');
+    // Send separate email with wp_mail() to fixed admin
+    $to = 'submit@thedjf.com'; // Hardcoded admin email
+    $subject = 'New Business Application PDF';
+    $message = 'Please find the attached PDF of the submitted application form.';
+    $headers = ['Content-Type: text/html; charset=UTF-8'];
+    $attachments = [$pdf_path];
 
-    if (!isset($mail['attachments'])) {
-        $mail['attachments'] = '';
-    }
-    if (is_array($mail['attachments'])) {
-        $mail['attachments'] = implode(',', $mail['attachments']);
-    }
-    if (!empty($mail['attachments'])) {
-        $mail['attachments'] .= ',' . $pdf_path;
-    } else {
-        $mail['attachments'] = $pdf_path;
-    }
+    wp_mail($to, $subject, $message, $headers, $attachments);
 
-    $cf7->set_properties(['mail' => $mail]);
+    // CF7 normal email continues without PDF attachment
 }
