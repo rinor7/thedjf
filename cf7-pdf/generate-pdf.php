@@ -65,8 +65,8 @@ function cf7_generate_pdf_and_send_separately($cf7, &$abort) {
     $pdf->Output($pdf_path, 'F');
 
     // Send separate email with wp_mail() to fixed admin
-    $to = 'submit@thedjf.com'; // Hardcoded admin email
-    $subject = 'New Business Application PDF';
+    $to = 'eli@thedjf.com'; // Hardcoded admin email
+    $subject = 'New Application PDF';
     $message = 'Please find the attached PDF of the submitted application form.';
     $headers = ['Content-Type: text/html; charset=UTF-8'];
     $attachments = [$pdf_path];
