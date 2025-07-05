@@ -13,7 +13,7 @@ function cf7_generate_pdf_inside_theme($cf7, &$abort, $submission) {
     $pdf_path = $upload_dir['basedir'] . '/application-' . time() . '.pdf';
 
     // Load TCPDF from theme
-    require_once get_stylesheet_directory() . '/cf7-pdf/tcpdf/tcpdf.php';
+    require_once get_template_directory() . '/cf7-pdf/tcpdf/tcpdf.php';
 
     $pdf = new TCPDF();
     $pdf->AddPage();
