@@ -1,5 +1,5 @@
 <?php
-$path = get_template_directory() . '/cf7-pdf/tcpdf/tcpdf.php';
+$path = get_stylesheet_directory() . '/cf7-pdf/tcpdf/tcpdf.php';
 
 echo "<strong>Checking file:</strong><br>$path<br><br>";
 
