@@ -1,9 +1,4 @@
 <?php
-if (file_exists(get_template_directory() . '/cf7-pdf/tcpdf/tcpdf.php')) {
-    error_log("TCPDF file found!");
-} else {
-    error_log("TCPDF file NOT found!");
-}
 
 add_action('wpcf7_before_send_mail', 'cf7_generate_pdf_inside_theme', 10, 3);
 
@@ -18,7 +13,7 @@ function cf7_generate_pdf_inside_theme($cf7, &$abort, $submission) {
     $pdf_path = $upload_dir['basedir'] . '/application-' . time() . '.pdf';
 
     // Load TCPDF from theme
-    require_once get_template_directory() . '/cf7-pdf/tcpdf/tcpdf.php';
+    require_once get_stylesheet_directory() . '/cf7-pdf/tcpdf/tcpdf.php';
 
     $pdf = new TCPDF();
     $pdf->AddPage();
