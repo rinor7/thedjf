@@ -39,17 +39,27 @@ function cf7_generate_pdf_inside_theme($cf7, &$abort) {
     // Build HTML table of form data
     $html = '<table border="1" cellpadding="5" cellspacing="0" style="border-collapse:collapse;">';
     foreach ($data as $key => $value) {
-    // For signature field, replace image/attachment with "SIGNED"
-        if ($key === 'signature-464') {
-            $value = 'SIGNED';
-        } else if (is_array($value)) {
-            $value = implode(", ", $value);
+    if ($key === 'signature-464') {
+        // If it's an array, it probably contains both attachment path and URL
+        if (is_array($value)) {
+            // Filter and keep only URL starting with http/https
+            foreach ($value as $v) {
+                if (strpos($v, 'http') === 0) {
+                    $value = $v;
+                    break;
+                }
+            }
         }
-        $html .= '<tr>
-            <td style="background-color:#f2f2f2; width:40%;"><strong>' . ucfirst(str_replace('-', ' ', $key)) . '</strong></td>
-            <td>' . htmlspecialchars($value) . '</td>
-        </tr>';
+    } else if (is_array($value)) {
+        $value = implode(", ", $value);
     }
+
+    $html .= '<tr>
+        <td style="background-color:#f2f2f2; width:40%;"><strong>' . ucfirst(str_replace('-', ' ', $key)) . '</strong></td>
+        <td>' . htmlspecialchars($value) . '</td>
+    </tr>';
+}
+
     $html .= '</table>';
 
     $pdf->writeHTML($html, true, false, true, false, '');
