@@ -40,14 +40,20 @@ function cf7_generate_pdf_inside_theme($cf7, &$abort) {
     $html = '<table border="1" cellpadding="5" cellspacing="0" style="border-collapse:collapse;">';
     foreach ($data as $key => $value) {
     if ($key === 'signature-464') {
-        // If it's an array, it probably contains both attachment path and URL
         if (is_array($value)) {
-            // Filter and keep only URL starting with http/https
+            // Find and keep only URL (starting with http or https)
+            $url = '';
             foreach ($value as $v) {
                 if (strpos($v, 'http') === 0) {
-                    $value = $v;
+                    $url = $v;
                     break;
                 }
+            }
+            $value = $url ?: 'SIGNED'; // fallback to SIGNED if URL missing
+        } else if (is_string($value)) {
+            // If it’s a string, check if it starts with http; if not, remove it
+            if (strpos($value, 'http') !== 0) {
+                $value = 'SIGNED'; // or empty string if you want no output
             }
         }
     } else if (is_array($value)) {
@@ -59,6 +65,7 @@ function cf7_generate_pdf_inside_theme($cf7, &$abort) {
         <td>' . htmlspecialchars($value) . '</td>
     </tr>';
 }
+
 
     $html .= '</table>';
 
