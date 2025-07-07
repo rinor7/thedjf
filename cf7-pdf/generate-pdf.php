@@ -20,10 +20,20 @@ function cf7_generate_pdf_and_send_separately($cf7, &$abort) {
     require_once get_template_directory() . '/cf7-pdf/tcpdf/tcpdf.php';
 
     $pdf = new TCPDF();
-    $pdf->SetTitle('DIRECT JUNCTION FINANCIAL Application Form');
+    $client_email = isset($data['business-email']) ? $data['business-email'] : '';
+    $client_email = isset($data['business-email']) ? $data['business-email'] : '';
+
+    // Build the title string
+    $title = 'DIRECT JUNCTION FINANCIAL Application Form';
+    if ($client_email) {
+        $title .= ': ' . $client_email;
+    }
+
+    // Set PDF title and write heading with email appended
+    $pdf->SetTitle($title);
     $pdf->AddPage();
     $pdf->SetFont('helvetica', 'B', 14);
-    $pdf->Write(0, "DIRECT JUNCTION FINANCIAL Application Form\n\n");
+    $pdf->Write(0, $title . "\n\n");
 
     $pdf->SetFont('helvetica', '', 10);
 
