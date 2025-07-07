@@ -20,20 +20,22 @@ function cf7_generate_pdf_and_send_separately($cf7, &$abort) {
     require_once get_template_directory() . '/cf7-pdf/tcpdf/tcpdf.php';
 
     $pdf = new TCPDF();
-    $client_email = isset($data['business-email']) ? $data['business-email'] : '';
-    $client_email = isset($data['business-email']) ? $data['business-email'] : '';
+    // Get owner-name and business-legal-name safely from submitted data
+    $owner_name = isset($data['owner-name']) && !empty($data['owner-name']) ? $data['owner-name'] : '';
+    $business_legal_name = isset($data['business-legal-name']) && !empty($data['business-legal-name']) ? $data['business-legal-name'] : '';
 
-    // Build the title string
-    $title = 'DIRECT JUNCTION FINANCIAL Application Form';
-    if ($client_email) {
-        $title .= ': ' . $client_email;
+    // Compose title text with those fields
+    $title_text = 'DIRECT JUNCTION FINANCIAL Application Form';
+
+    if ($owner_name !== '' || $business_legal_name !== '') {
+        $title_text .= ': ' . trim($owner_name . ', ' . $business_legal_name, ', ');
     }
 
-    // Set PDF title and write heading with email appended
-    $pdf->SetTitle($title);
+    $pdf->SetTitle($title_text); // PDF metadata title
     $pdf->AddPage();
     $pdf->SetFont('helvetica', 'B', 14);
-    $pdf->Write(0, $title . "\n\n");
+    $pdf->Write(0, $title_text . "\n\n");  // Visible title in PDF content
+
 
     $pdf->SetFont('helvetica', '', 10);
 
