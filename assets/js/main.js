@@ -279,3 +279,14 @@ const input = document.getElementById("federal-tax-id");
 
   if (dobInput) formatDateInput(dobInput);
   if (startDateInput) formatDateInput(startDateInput);
+
+
+  const submissionDateInput = document.getElementById('submission-date');
+  if (submissionDateInput) {
+    const today = new Date();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    const yyyy = today.getFullYear();
+
+    submissionDateInput.value = `${mm}/${dd}/${yyyy}`;
+  }
