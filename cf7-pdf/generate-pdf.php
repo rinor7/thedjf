@@ -43,6 +43,7 @@ function cf7_generate_pdf_and_send_separately($cf7, &$abort) {
     // Inputs to skip entirely
     $skip_inputs = [
         'signature-464-inline',
+        'signature-464',
         'signature-464-attachment',
         'bank-statements',
         'acceptance-002',
