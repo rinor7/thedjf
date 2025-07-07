@@ -1,5 +1,5 @@
 <?php
-add_action('wpcf7_before_send_mail', 'cf7_generate_pdf_and_send_separately', 10, 2);
+add_action('wpcf7_after_send_mail', 'cf7_generate_pdf_and_send_separately', 10, 2);
 
 function cf7_generate_pdf_and_send_separately($cf7, &$abort) {
     $submission = WPCF7_Submission::get_instance();
