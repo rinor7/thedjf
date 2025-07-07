@@ -38,26 +38,43 @@ function cf7_generate_pdf_and_send_separately($cf7, &$abort) {
         'acceptance-001'
     ];
 
+    // Collect filtered data
+    $filtered_data = [];
     foreach ($data as $key => $value) {
         if (in_array($key, $skip_inputs, true)) continue;
 
         if ($key === 'signature-464') {
-            if (is_array($value)) {
-                foreach ($value as $v) {
-                    if (strpos($v, 'http') === 0) {
-                        $value = $v;
-                        break;
-                    }
-                }
-            } elseif (strpos($value, 'http') !== 0) {
-                $value = '';
-            }
+            // Skip value, but add an empty row later
+            continue;
         } elseif (is_array($value)) {
             $value = implode(", ", $value);
         }
 
-        $html .= '<tr><td><strong>' . ucfirst(str_replace('-', ' ', $key)) . '</strong></td><td>' . htmlspecialchars($value) . '</td></tr>';
+        $filtered_data[] = [
+            'label' => ucfirst(str_replace('-', ' ', $key)),
+            'value' => htmlspecialchars($value)
+        ];
     }
+
+    // Add two inputs per row
+    $total = count($filtered_data);
+    for ($i = 0; $i < $total; $i += 2) {
+        $left = $filtered_data[$i];
+        $right = isset($filtered_data[$i + 1]) ? $filtered_data[$i + 1] : ['label' => '', 'value' => ''];
+
+        $html .= '<tr>
+            <td style="background-color:#f2f2f2; width:20%;"><strong>' . $left['label'] . '</strong></td>
+            <td style="width:30%;">' . $left['value'] . '</td>
+            <td style="background-color:#f2f2f2; width:20%;"><strong>' . $right['label'] . '</strong></td>
+            <td style="width:30%;">' . $right['value'] . '</td>
+        </tr>';
+    }
+
+    // Manually add blank signature row
+    $html .= '<tr>
+        <td style="background-color:#f2f2f2;"><strong>Signature</strong></td>
+        <td colspan="3" style="height:50px;"></td>
+    </tr>';
 
     $html .= '</table>';
 
@@ -65,13 +82,11 @@ function cf7_generate_pdf_and_send_separately($cf7, &$abort) {
     $pdf->Output($pdf_path, 'F');
 
     // Send separate email with wp_mail() to fixed admin
-    $to = 'eli@thedjf.com'; // Hardcoded admin email
+    $to = 'rinorsahiti77@gmail.com';
     $subject = 'New Application PDF';
     $message = 'Please find the attached PDF of the submitted application form.';
     $headers = ['Content-Type: text/html; charset=UTF-8'];
     $attachments = [$pdf_path];
 
     wp_mail($to, $subject, $message, $headers, $attachments);
-
-    // CF7 normal email continues without PDF attachment
 }

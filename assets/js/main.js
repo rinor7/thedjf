@@ -262,3 +262,20 @@ const input = document.getElementById("federal-tax-id");
   });
 
   
+  function formatDateInput(el) {
+    el.addEventListener("input", function () {
+      let value = el.value.replace(/\D/g, "").slice(0, 8);
+      if (value.length >= 5) {
+        value = value.slice(0, 2) + '/' + value.slice(2, 4) + '/' + value.slice(4);
+      } else if (value.length >= 3) {
+        value = value.slice(0, 2) + '/' + value.slice(2);
+      }
+      el.value = value;
+    });
+  }
+
+  const dobInput = document.getElementById("dob");
+  const startDateInput = document.getElementById("business-start-date");
+
+  if (dobInput) formatDateInput(dobInput);
+  if (startDateInput) formatDateInput(startDateInput);
