@@ -20,13 +20,13 @@ function cf7_generate_pdf_and_send_separately($cf7, &$abort) {
     require_once get_template_directory() . '/cf7-pdf/tcpdf/tcpdf.php';
 
     $pdf = new TCPDF();
-
     // Get owner-name and business-legal-name safely from submitted data
     $owner_name = isset($data['owner-name']) && !empty($data['owner-name']) ? $data['owner-name'] : '';
     $business_legal_name = isset($data['business-legal-name']) && !empty($data['business-legal-name']) ? $data['business-legal-name'] : '';
 
     // Compose title text with those fields
     $title_text = 'DIRECT JUNCTION FINANCIAL Application Form';
+
     if ($owner_name !== '' || $business_legal_name !== '') {
         $title_text .= ': ' . trim($owner_name . ', ' . $business_legal_name, ', ');
     }
@@ -36,11 +36,12 @@ function cf7_generate_pdf_and_send_separately($cf7, &$abort) {
     $pdf->SetFont('helvetica', 'B', 14);
     $pdf->Write(0, $title_text . "\n\n");  // Visible title in PDF content
 
+
     $pdf->SetFont('helvetica', '', 10);
 
     $html = '<table border="1" cellpadding="5" cellspacing="0" style="border-collapse:collapse;">';
 
-    // Inputs to skip entirely
+    // Inputs to skip
     $skip_inputs = [
         'signature-464-inline',
         'signature-464-attachment',
@@ -49,22 +50,14 @@ function cf7_generate_pdf_and_send_separately($cf7, &$abort) {
         'acceptance-001'
     ];
 
-    // Inputs to blank out value but show row
-    $show_empty_inputs = [
-        'signature-464',
-        'business-email',
-        'personal-email',
-        'business-phone',
-        'mobile-phone'
-    ];
-
     // Collect filtered data
     $filtered_data = [];
     foreach ($data as $key => $value) {
         if (in_array($key, $skip_inputs, true)) continue;
 
-        if (in_array($key, $show_empty_inputs, true)) {
-            $value = ''; // Keep label but blank value
+        if ($key === 'signature-464') {
+            // Skip value, but add an empty row later
+            continue;
         } elseif (is_array($value)) {
             $value = implode(", ", $value);
         }
