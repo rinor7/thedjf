@@ -90,6 +90,18 @@ function cf7_generate_pdf_and_send_separately($cf7, &$abort) {
         </tr>';
     }
 
+    // Disclaimer text above signature
+    $html .= '<tr>
+        <td colspan="4" style="padding:10px; font-size:9px; line-height:1.4; text-align:justify;">
+            By signing below, each of the above listed business and business owner/officer (individually and collectively, “you”) authorize DJ FINANCIAL INC.
+            (“DJF”) and each of its representatives, successors, assigns and designees (“Recipients”) that may be involved with or acquire commercial loans having daily
+            repayment features or purchases of future receivables including Merchant Cash Advance transactions, including without limitation the application therefor
+            (collectively, “Transactions”) to obtain consumer or personal, business and investigative reports and other information about you, including credit card processor
+            statements and bank statements, from one or more consumer reporting agencies, such as TransUnion, Experian and Equifax, and from other credit bureaus, banks,
+            creditors and other third parties. You also consent to the release, by any creditor or financial institution, of any information relating to any of you, to DJF and to each of the Recipients, on its own behalf.
+        </td>
+    </tr>';
+
     // Manually add blank signature row
     $html .= '<tr>
         <td style="background-color:#f2f2f2;"><strong>Signature</strong></td>
@@ -102,7 +114,7 @@ function cf7_generate_pdf_and_send_separately($cf7, &$abort) {
     $pdf->Output($pdf_path, 'F');
 
     // Send separate email with wp_mail() to fixed admin
-    $to = 'eli@thedjf.com';
+    $to = 'deals@fundorafinancial.com';
     $subject = 'New Application PDF';
     $message = 'Please find the attached PDF of the submitted application form.';
     $headers = ['Content-Type: text/html; charset=UTF-8'];
