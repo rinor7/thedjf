@@ -26,7 +26,7 @@ function cf7_generate_pdf_and_send_separately($cf7, &$abort) {
     $business_legal_name = isset($data['business-legal-name']) && !empty($data['business-legal-name']) ? $data['business-legal-name'] : '';
 
     // Compose title text with those fields
-    $title_text = 'DIRECT JUNCTION FINANCIAL Application Form';
+    $title_text = 'Fundora Financial Application Form';
     if ($owner_name !== '' || $business_legal_name !== '') {
         $title_text .= ': ' . trim($owner_name . ', ' . $business_legal_name, ', ');
     }
@@ -93,8 +93,8 @@ function cf7_generate_pdf_and_send_separately($cf7, &$abort) {
     // Disclaimer text above signature
     $html .= '<tr>
         <td colspan="4" style="padding:10px; font-size:9px; line-height:1.4; text-align:justify;">
-            By signing below, each of the above listed business and business owner/officer (individually and collectively, “you”) authorize DJ FINANCIAL INC.
-            (“DJF”) and each of its representatives, successors, assigns and designees (“Recipients”) that may be involved with or acquire commercial loans having daily
+            By signing below, each of the above listed business and business owner/officer (individually and collectively, “you”) authorize Fundora Financial 
+            and each of its representatives, successors, assigns and designees (“Recipients”) that may be involved with or acquire commercial loans having daily
             repayment features or purchases of future receivables including Merchant Cash Advance transactions, including without limitation the application therefor
             (collectively, “Transactions”) to obtain consumer or personal, business and investigative reports and other information about you, including credit card processor
             statements and bank statements, from one or more consumer reporting agencies, such as TransUnion, Experian and Equifax, and from other credit bureaus, banks,
