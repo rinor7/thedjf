@@ -93,7 +93,7 @@ function cf7_generate_pdf_and_send_separately($cf7, &$abort) {
     // Disclaimer text above signature
     $html .= '<tr>
         <td colspan="4" style="padding:10px; font-size:9px; line-height:1.4; text-align:justify;">
-            By signing below, each of the above listed business and business owner/officer (individually and collectively, “you”) authorize Fundora Financial 
+            By signing below, each of the above listed business and business owner/officer (individually and collectively, “you”) authorize Fundora Advance Corp (FAC) 
             and each of its representatives, successors, assigns and designees (“Recipients”) that may be involved with or acquire commercial loans having daily
             repayment features or purchases of future receivables including Merchant Cash Advance transactions, including without limitation the application therefor
             (collectively, “Transactions”) to obtain consumer or personal, business and investigative reports and other information about you, including credit card processor
